@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- DataSource obj cfg -->
+<bean id="dmds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+<property name="username" value="user1"/>
+<property name="password" value="1234"/>
+</bean>
+
+
+<!-- DAO class cfg -->
+<bean id="empDAO" class="com.nt.dao.EmployeeDAO">
+<constructor-arg name="ds" ref="dmds"></constructor-arg>
+</bean>
+
+<!-- Service class cfg -->
+<bean id="empService" class="com.nt.service.EmployeeService">
+<constructor-arg name="dao" ref="empDAO"/>
+</bean>
+
+<!-- Controller class cfg -->
+<bean id="controller" class="com.nt.controller.EmployeeController">
+<constructor-arg name="service" ref="empService"></constructor-arg>
+</bean>
+
+
+</beans>

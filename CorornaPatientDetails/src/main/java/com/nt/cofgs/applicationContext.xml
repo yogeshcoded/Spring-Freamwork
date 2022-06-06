@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+
+<!-- DataSource object confg -->
+<bean id="dmds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql:///jdbc"/>
+<property name="username" value="root"></property>
+<property name="password" value="1234"></property>
+</bean>
+
+<!-- DAO class cofg -->
+<bean id="patDAO" class="com.nt.dao.CoronaPatientDAOimpl">
+<constructor-arg name="ds" ref="dmds"/>
+</bean>
+
+<!--Service class confg -->
+<bean id="patService" class="com.nt.service.CoronaPatientMgmtService">
+<constructor-arg name="dao" ref="patDAO"/>
+</bean>
+
+<!-- controller class -->
+<bean id="controller" class="com.nt.controller.MainController">
+<constructor-arg name="service" ref="patService"/>
+</bean>
+
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+ <!-- singltone cfg -->
+<bean id="p1" class="com.nt.singletone.Printer"   scope="prototype" />
+<bean id="p2" class="com.nt.singletone.Printer"   scope="prototype"/> 
+
+<bean id="bDart" class="com.nt.comps.BlueDart"/>
+
+<bean id="fpkt" class="com.nt.comps.Flipkart"  scope="prototype" >
+<property name="courier"  ref="bDart"></property>
+</bean>
+<!-- prototype cfg -->
+<!-- <bean id="p1" class="com.nt.singletone.Printer"  factory-method="getInstance" />
+<bean id="p2" class="com.nt.singletone.Printer" factory-method="getInstance"/> -->
+
+<!-- <bean id="fpkt1" class="com.nt.singletone.Printer"  factory-method="getInstance" />
+<bean id="fpkt2" class="com.nt.singletone.Printer" factory-method="getInstance"/>  -->
+
+
+</beans>

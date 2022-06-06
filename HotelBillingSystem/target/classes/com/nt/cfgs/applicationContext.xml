@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+<!-- DataSource class cfgs -->
+<bean id="dmds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+<property name="username" value="user1" />
+<property name="password" value="1234"/>
+</bean>
+
+<!-- DAO class cfg -->
+<bean  id="hotelDAO" class="com.nt.dao.HotelDAOimp">
+<constructor-arg name="ds" ref="dmds"/>
+</bean>
+
+<!-- service class object -->
+<bean id="hotelService" class="com.nt.service.HotelManagementServiceimpl">
+<constructor-arg name="dao" ref="hotelDAO"/>
+</bean>
+
+<!-- controller class object -->
+<bean id="controller" class="com.nt.controller.HotelController">
+<constructor-arg name="service" ref="hotelService"/>
+</bean>
+
+</beans>
